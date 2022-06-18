@@ -13,9 +13,9 @@ gradlew.bat clean build
 ```
 
 **macOS/Linux:**
-
+g
 ```
 ./gradlew clean build
 ```
 
-Build artifacts should be found in `./build/libs` folder.# FDUtilities
+Build artifacts should be found in `./build/libs` folder.

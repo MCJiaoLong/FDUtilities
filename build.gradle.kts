@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 import org.jetbrains.kotlin.util.capitalizeDecapitalize.capitalizeAsciiOnly
 
 plugins {
@@ -57,8 +59,8 @@ tasks.build {
         copyOutJar(":project:bukkit")
         copyOutJar(":plugin")
         //测试用
-        val file = file("$buildDir/libs").listFiles()?.find { it.endsWith("${rootProject.name}-$version.jar") }
-        file?.copyTo(file("E:\\TestServer\\Server-1.17.1\\plugins\\FDUtilities-Plugin.jar"), true)
+        //val file = file("$buildDir/libs").listFiles()?.find { it.endsWith("${rootProject.name}-$version.jar") }
+        //file?.copyTo(file("E:\\TestServer\\Server-1.17.1\\plugins\\FDUtilities-Plugin.jar"), true)
     }
     dependsOn(
         project(":project:api").tasks.build,

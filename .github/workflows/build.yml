@@ -1,4 +1,4 @@
-name: Build FDUtilities
+name: Build Plugin
 on: [ push, pull_request ]
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
           distribution: adopt
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
-      - name: Build……
+      - name: Build
         run: ./gradlew build
       - name: Capture Build Artifacts
         uses: actions/upload-artifact@v2
