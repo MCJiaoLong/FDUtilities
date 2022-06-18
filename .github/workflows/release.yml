@@ -1,0 +1,28 @@
+name: Project Release
+on:
+  release:
+    types: [ published ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 17 ]
+      fail-fast: true
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Setup JDK ${{ matrix.java }}
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: adopt
+      - name: Make Gradle Wrapper Executable
+        run: chmod +x ./gradlew
+      - name: build
+        env:
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+        run: ./gradlew publish -PtaboolibUsername=$NEXUS_USERNAME -PtaboolibPassword=$NEXUS_PASSWORD
