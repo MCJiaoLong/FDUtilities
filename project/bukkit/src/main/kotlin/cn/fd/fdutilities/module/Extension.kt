@@ -4,6 +4,7 @@ import org.bukkit.Bukkit
 import taboolib.common.platform.function.console
 import taboolib.module.lang.sendLang
 
+@Deprecated("过时")
 abstract class Extension(private val pluginName: String) : Module() {
 
     val pluginEnabled by lazy { Bukkit.getPluginManager().getPlugin(pluginName) != null }

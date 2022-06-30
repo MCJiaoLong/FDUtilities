@@ -17,6 +17,7 @@ subprojects {
     }
     dependencies {
         "compileOnly"(kotlin("stdlib"))
+        compileOnly("com.google.guava:guava:21.0")
     }
     tasks.withType<JavaCompile> {
         options.encoding = "UTF-8"
@@ -58,6 +59,7 @@ tasks.build {
         copyOutJar(":project:api")
         copyOutJar(":project:bukkit")
         copyOutJar(":plugin")
+        copyOutJar(":module:TestModule")
         //测试用
         //val file = file("$buildDir/libs").listFiles()?.find { it.endsWith("${rootProject.name}-$version.jar") }
         //file?.copyTo(file("E:\\TestServer\\Server-1.17.1\\plugins\\FDUtilities-Plugin.jar"), true)
@@ -71,9 +73,10 @@ tasks.build {
 
 fun copyOutJar(pj: String) {
     val plugin = project(pj)
-    val file = file("${plugin.buildDir}/libs").listFiles()?.find { it.endsWith("${plugin.name}-$version.jar") }
+    val file = file("${plugin.buildDir}/libs").listFiles()?.find { it.endsWith("${plugin.name}-${plugin.version}.jar") }
 
-    val jarName = "${rootProject.name}${if (pj == ":plugin") "" else "-${plugin.name.capitalizeAsciiOnly()}"}-$version.jar"
+    val jarName =
+        "${rootProject.name}${if (pj == ":plugin") "" else "-${plugin.name.capitalizeAsciiOnly()}"}-${plugin.version}.jar"
 
     file?.copyTo(file("$buildDir/libs/${jarName}"), true)
 }

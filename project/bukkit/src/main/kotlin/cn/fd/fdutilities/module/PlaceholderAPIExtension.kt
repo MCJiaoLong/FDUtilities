@@ -3,6 +3,7 @@ package cn.fd.fdutilities.module
 import cn.fd.fdutilities.config.ConfigYaml
 import taboolib.module.configuration.Configuration
 
+@Deprecated("过时")
 object PlaceholderAPIExtension : Extension("PlaceholderAPI") {
 
     override val resourcePath: String = "module/Extensions/PlaceholderAPI.yml"

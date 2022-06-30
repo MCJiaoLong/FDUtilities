@@ -13,7 +13,7 @@ gradlew.bat clean build
 ```
 
 **macOS/Linux:**
-g
+
 ```
 ./gradlew clean build
 ```

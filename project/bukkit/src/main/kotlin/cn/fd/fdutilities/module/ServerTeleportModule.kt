@@ -4,6 +4,7 @@ import cn.fd.fdutilities.config.ConfigYaml
 import taboolib.module.configuration.Configuration
 
 
+@Deprecated("过时")
 object ServerTeleportModule : Module() {
 
     override val resourcePath: String = "module/ServerTeleport.yml"

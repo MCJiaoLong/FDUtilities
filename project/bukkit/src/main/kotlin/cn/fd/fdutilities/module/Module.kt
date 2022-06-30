@@ -5,6 +5,7 @@ import taboolib.common.platform.function.releaseResourceFile
 import taboolib.module.configuration.Configuration
 import java.io.File
 
+@Deprecated("过时")
 abstract class Module {
 
     abstract val resourcePath: String
@@ -17,6 +18,7 @@ abstract class Module {
 
     //初始化方法
     abstract fun init()
+
     //重载方法
     abstract fun onReload()
 

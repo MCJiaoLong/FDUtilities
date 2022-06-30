@@ -63,17 +63,19 @@ taboolib {
 
 
 dependencies {
-    api(project(":project:api"))
+    //api(project(":project:api"))
+    implementation(project(":project:api"))
+
     compileOnly("ink.ptms:nms-all:1.0.0")
     compileOnly("ink.ptms.core:v11802:11802-minimize:mapped")
     compileOnly("ink.ptms.core:v11802:11802-minimize:universal")
 
     //MiniMessage: https://docs.adventure.kyori.net/minimessage/api.html
-    compileOnly("net.kyori:adventure-api:4.10.1")
-    compileOnly("net.kyori:adventure-platform-bukkit:4.1.0")
-    compileOnly("net.kyori:adventure-text-minimessage:4.10.1")
+    compileOnly("net.kyori:adventure-api:4.11.0")
+    compileOnly("net.kyori:adventure-platform-bukkit:4.1.1")
+    compileOnly("net.kyori:adventure-text-minimessage:4.11.0")
 
     //PlaceholderAPI: https://www.spigotmc.org/resources/placeholderapi.7339/
-    compileOnly ("me.clip:placeholderapi:2.11.1")
+    compileOnly("me.clip:placeholderapi:2.11.1")
 }
 
