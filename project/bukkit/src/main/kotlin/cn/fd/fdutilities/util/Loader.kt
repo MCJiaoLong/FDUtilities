@@ -68,6 +68,10 @@ object Loader {
      * @param file 要监听的文件
      */
     fun listen(file: File, function: () -> Unit) {
+        //如果未开启多线程，就不监听文件了
+        if (!SettingsYaml.MULTI_THREAD)
+            return
+
         /**
          * 当文件变化时，重新加载模块
          */

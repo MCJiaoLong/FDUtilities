@@ -1,6 +1,7 @@
 package cn.fd.fdutilities.module
 
 import cn.fd.fdutilities.FDUtilities
+import cn.fd.fdutilities.config.SettingsYaml
 import cn.fd.fdutilities.util.ClassUtil
 import org.bukkit.command.CommandSender
 import org.jetbrains.annotations.ApiStatus
@@ -49,18 +50,27 @@ object ModuleManager {
      * @param sender 发送消息的命令发送者(就是注册模块的消息提示发给谁)
      */
     fun registerAll(sender: CommandSender) {
-        sender.sendLang("Module-Loader-Loading")
+        val run = {
+            sender.sendLang("Module-Loader-Loading")
+            val registered = findModulesOnDisk().stream().filter { obj: Class<out ModuleExpansion?>? ->
+                Objects.nonNull(obj)
+            }.map { clazz: Class<out ModuleExpansion?>? ->
+                clazz?.let {
+                    register(it)
+                }
+            }.filter { obj: Optional<ModuleExpansion> -> obj.isPresent }
+                .map { obj: Optional<ModuleExpansion> -> obj.get() }.collect(Collectors.toList())
+            sender.sendLang("Module-Loader-Finished", registered.size)
+        }
+        //如果开启多线程，就创建一个新线程用来加载类
+        if (SettingsYaml.MULTI_THREAD) {
+            Thread {
+                modulesLock.lock()
+                run()
+                modulesLock.unlock()
+            }.apply { name = "Module-Loader" }.start()
+        } else run()
 
-        val registered = findModulesOnDisk().stream().filter { obj: Class<out ModuleExpansion?>? ->
-            Objects.nonNull(obj)
-        }.map { clazz: Class<out ModuleExpansion?>? ->
-            clazz?.let {
-                register(it)
-            }
-        }.filter { obj: Optional<ModuleExpansion> -> obj.isPresent }
-            .map { obj: Optional<ModuleExpansion> -> obj.get() }.collect(Collectors.toList())
-
-        sender.sendLang("Module-Loader-Finished", registered.size)
     }
 
     /**

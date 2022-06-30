@@ -3,3 +3,4 @@
 
 Settings:
   language: zh_CN
+  Multi-Thread: true

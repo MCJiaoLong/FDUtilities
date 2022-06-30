@@ -11,12 +11,15 @@ import taboolib.module.configuration.Configuration
  */
 object SettingsYaml {
 
-    @Config(value = "settings.yml" ,autoReload = true)
+    @Config(value = "settings.yml", autoReload = true)
     lateinit var conf: Configuration
         private set
 
 
     @ConfigNode(value = "Settings.language", bind = "settings.yml")
-    var PLUGIN_LANGUAGE = "zh_CN"
+    var PLUGIN_LANGUAGE = "en_US"
+
+    @ConfigNode(value = "Settings.Multi-Thread", bind = "settings.yml")
+    var MULTI_THREAD = true
 
 }

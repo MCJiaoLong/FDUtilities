@@ -1,10 +1,10 @@
 # FDUtilities
 
-## Building
+## 构建
 
-* [Gradle](https://gradle.org/) - Dependency Management
+* [Gradle](https://gradle.org/) - 依赖管理
 
-The GradleWrapper in included in this project.
+这个项目中包含的 GradleWrapper。
 
 **Windows:**
 
@@ -18,4 +18,4 @@ gradlew.bat clean build
 ./gradlew clean build
 ```
 
-Build artifacts should be found in `./build/libs` folder.
+构建工件应该在 `./build/libs` 文件夹中找到。
