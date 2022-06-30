@@ -3,7 +3,11 @@ package cn.fd.fdutilities.util
 import cn.fd.fdutilities.channel.BungeeChannel
 import cn.fd.fdutilities.config.ConfigYaml
 import cn.fd.fdutilities.config.SettingsYaml
-import cn.fd.fdutilities.module.*
+import cn.fd.fdutilities.module.ModuleExpansion
+import cn.fd.fdutilities.module.ModuleManager
+import cn.fd.fdutilities.module.outdated.Module
+import cn.fd.fdutilities.module.outdated.PlaceholderAPIExtension
+import cn.fd.fdutilities.module.outdated.ServerTeleportModule
 import cn.fd.fdutilities.util.FileListener.unlisten
 import org.bukkit.Bukkit
 import taboolib.common.platform.function.console
@@ -16,8 +20,7 @@ object Loader {
 
     fun reloadModules() {
         arrayOf(
-            ServerTeleportModule,
-            PlaceholderAPIExtension
+            ServerTeleportModule, PlaceholderAPIExtension
         ).forEach {
             it.reload()
             //检测是否启用，如果不启用，就不需要监听文件变化
@@ -31,6 +34,12 @@ object Loader {
                 unlisten(it)
             }
         }
+
+        //重新加载所有模块
+        for (module in ModuleManager.modules.values) {
+            module.unregister()
+        }
+        ModuleManager.registerAll(Bukkit.getConsoleSender())
     }
 
 
@@ -48,11 +57,10 @@ object Loader {
         reloadModules()
         //测试
         BungeeChannel.printServers()
-        ExpansionManager.registerAll(Bukkit.getConsoleSender())
-        for (module in ExpansionManager.modules) {
+        ModuleManager.registerAll(Bukkit.getConsoleSender())
+        for (module in ModuleManager.modules) {
             module.value.printMyself()
         }
-        println(ExpansionManager.modules)
     }
 
     /**
@@ -98,8 +106,7 @@ object Loader {
      * 取消监听模块
      */
     fun unlisten(module: Module) {
-        if (FileListener.isListening(module.file))
-            unlisten(module.file)
+        if (FileListener.isListening(module.file)) unlisten(module.file)
     }
 
 

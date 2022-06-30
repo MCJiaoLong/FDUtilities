@@ -1,6 +1,6 @@
 package cn.fd.fdutilities.command
 
-import cn.fd.fdutilities.module.PlaceholderAPIExtension
+import cn.fd.fdutilities.module.outdated.PlaceholderAPIExtension
 import cn.fd.fdutilities.util.KetherParser.eval
 import cn.fd.fdutilities.util.Loader
 import org.bukkit.command.CommandSender

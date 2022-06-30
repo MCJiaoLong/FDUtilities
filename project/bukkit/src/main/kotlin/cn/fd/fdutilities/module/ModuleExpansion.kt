@@ -36,12 +36,12 @@ abstract class ModuleExpansion {
 
     //注册此模块
     fun register(): Boolean {
-        return ExpansionManager.register(this)
+        return ModuleManager.register(this)
     }
 
     //取消注册此模块
     fun unregister(): Boolean {
-        return ExpansionManager.unregister(this)
+        return ModuleManager.unregister(this)
     }
 
 

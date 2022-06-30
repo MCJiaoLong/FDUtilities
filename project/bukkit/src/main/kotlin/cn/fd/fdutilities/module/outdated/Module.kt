@@ -1,4 +1,4 @@
-package cn.fd.fdutilities.module
+package cn.fd.fdutilities.module.outdated
 
 import taboolib.common.platform.function.getDataFolder
 import taboolib.common.platform.function.releaseResourceFile

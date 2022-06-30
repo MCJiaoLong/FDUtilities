@@ -1,4 +1,4 @@
-package cn.fd.fdutilities.module
+package cn.fd.fdutilities.module.outdated
 
 import org.bukkit.Bukkit
 import taboolib.common.platform.function.console

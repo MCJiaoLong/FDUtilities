@@ -2,8 +2,7 @@ package cn.fd.fdutilities
 
 import cn.fd.fdutilities.channel.BungeeChannel
 import cn.fd.fdutilities.config.SettingsYaml
-import cn.fd.fdutilities.module.ExpansionManager
-import cn.fd.fdutilities.module.Extension
+import cn.fd.fdutilities.module.outdated.Extension
 import cn.fd.fdutilities.util.Adventure
 import cn.fd.fdutilities.util.FileListener
 import cn.fd.fdutilities.util.Loader
@@ -34,15 +33,11 @@ object FDUtilities : Plugin() {
 
     override fun onLoad() {
         BungeeChannel.init()
-        //加载模块配置文件
-        Loader.reloadModules()
         //插件语言设置
         Language.default = SettingsYaml.PLUGIN_LANGUAGE
-        console().sendLang("Plugin-Loading", Bukkit.getBukkitVersion())
-
-        //测试
-        ExpansionManager.registerAll(Bukkit.getConsoleSender())
+        //加载模块配置文件
         Loader.reloadAll()
+        console().sendLang("Plugin-Loading", Bukkit.getBukkitVersion())
     }
 
     override fun onEnable() {

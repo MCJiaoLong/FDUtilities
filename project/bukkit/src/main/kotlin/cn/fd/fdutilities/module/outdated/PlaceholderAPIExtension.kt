@@ -1,4 +1,4 @@
-package cn.fd.fdutilities.module
+package cn.fd.fdutilities.module.outdated
 
 import cn.fd.fdutilities.config.ConfigYaml
 import taboolib.module.configuration.Configuration
